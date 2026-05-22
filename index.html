@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>olavalencita</title>
+
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    background: black;
+    font-family: Arial, sans-serif;
+}
+
+/* TEXTO */
+h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 8vw;
+    text-align: center;
+    z-index: 10;
+    animation: mover 3s infinite ease-in-out;
+}
+
+@keyframes mover {
+    0% { transform: translate(-50%, -50%) translateY(0px); }
+    50% { transform: translate(-50%, -50%) translateY(-15px); }
+    100% { transform: translate(-50%, -50%) translateY(0px); }
+}
+
+/* CONTENEDOR */
+.drop {
+    position: absolute;
+    top: -120px;
+    animation: caer linear infinite;
+}
+
+/* GIF */
+.drop img {
+    pointer-events: none;
+    animation: girar linear infinite;
+}
+
+/* caída */
+@keyframes caer {
+    from { transform: translateY(-120px); }
+    to { transform: translateY(110vh); }
+}
+
+/* giro */
+@keyframes girar {
+    from { rotate: 0deg; }
+    to { rotate: 360deg; }
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>olavalencita</h1>
+
+<audio id="musica" autoplay loop muted playsinline>
+    <source src="jejeje.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const gifURL = "kingnasirdance-ezgif.com-video-to-gif-converter.gif";
+
+/* 🔥 cantidad equilibrada */
+const cantidad = 12;
+
+for (let i = 0; i < cantidad; i++) {
+
+    let drop = document.createElement("div");
+    drop.className = "drop";
+
+    let img = document.createElement("img");
+    img.src = gifURL;
+
+    drop.appendChild(img);
+
+    drop.style.left = Math.random() * 100 + "vw";
+
+    let duracion = 6 + Math.random() * 6;
+    drop.style.animationDuration = duracion + "s";
+    drop.style.animationDelay = (-Math.random() * duracion) + "s";
+
+    /* 🔥 TAMAÑO ALEATORIO */
+    let tamaño = 40 + Math.random() * 60; // entre 40px y 100px
+    img.style.width = tamaño + "px";
+
+    /* velocidad de giro */
+    img.style.animationDuration = (3 + Math.random() * 3) + "s";
+
+    document.body.appendChild(drop);
+}
+
+/* AUDIO */
+const audio = document.getElementById("musica");
+
+function activarAudio() {
+    audio.muted = false;
+    audio.play().catch(() => {});
+}
+
+document.addEventListener("click", activarAudio);
+document.addEventListener("touchstart", activarAudio);
+document.addEventListener("touchend", activarAudio);
+
+</script>
+
+</body>
+</html>
